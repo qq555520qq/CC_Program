@@ -1,3 +1,11 @@
+/* ----------------------------------------------------------- */
+/* NAME : Wu,Jun-Qing                       User ID: 108598014 */
+/* DUE DATE : 29/03/2020                                       */
+/* PROGRAM ASSIGNMENT #                                        */
+/* FILE NAME : prog1.c                                         */
+/* PROGRAM PURPOSE :                                           */
+/*    To understand Fork() and Wait() by writing exercises     */
+/* ----------------------------------------------------------- */
 #include <stdio.h>
 #include <sys/types.h>
 #include <string.h>
@@ -9,8 +17,8 @@ float buffonNeedle(int times);
 int inEllipseAreaNum(int times, int a, int b);
 double estimatedArea(int hitNum, int times, int a, int b);
 double actualArea(int a, int b);
-void pinBallAnswer(int bins, int ballNum);
 int getBallPos(int bin);
+void pinBallAnswer(int bins, int ballNum);
 double histogramMultiples(int ballNum, int bins, int *arr);
 void printStr(char str[2000]);
 
@@ -101,7 +109,7 @@ int main(int argc, char *argv[])
                     sprintf(str, "Number of Ball Droppings %7d\n", y);
                     printStr(str);
                     pinBallAnswer(x, y);
-
+                    printStr("Simple Pinball Process Exits\n");
                     exit(0);
                 }
                 else if (pid4 > 0)
@@ -119,6 +127,14 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+/* ----------------------------------------------------------- */
+/* FUNCTION  fibonacci :                                       */
+/*    To get the fibonacci number of Fn.                       */
+/* PARAMETER USAGE :                                           */
+/*    int n -> To want to get which Fn number.                 */
+/* FUNCTION CALLED :                                           */
+/*    fibonacci(int n)                                         */
+/* ----------------------------------------------------------- */
 long fibonacci(int n)
 {
     if (n >= 2)
@@ -131,6 +147,14 @@ long fibonacci(int n)
     }
 }
 
+/* ----------------------------------------------------------- */
+/* FUNCTION  buffonNeedle :                                    */
+/*    To estimated probability of Buffon's Needle.             */
+/* PARAMETER USAGE :                                           */
+/*    int times ->  Number of throwing needle.                 */
+/* FUNCTION CALLED :                                           */
+/*    rand()                                                   */
+/* ----------------------------------------------------------- */
 float buffonNeedle(int times)
 {
     int i;
@@ -155,6 +179,17 @@ float buffonNeedle(int times)
     return answerTimes / times;
 }
 
+/* ----------------------------------------------------------- */
+/* FUNCTION  inEllipseAreaNum :                                */
+/*    To get number of hitting in ellipseAreaNum.              */
+/* PARAMETER USAGE :                                           */
+/*    int times ->  Number of trying to hit.                   */
+/*    int a     ->  The length of semi-major axis.             */
+/*    int b     ->  The length of semi-minor axis.             */
+/* FUNCTION CALLED :                                           */
+/*    rand()                                                   */
+/*    pow(double __x, double __y)                              */
+/* ----------------------------------------------------------- */
 int inEllipseAreaNum(int times, int a, int b)
 {
     int i;
@@ -175,17 +210,113 @@ int inEllipseAreaNum(int times, int a, int b)
     return answerTimes;
 }
 
+/* ----------------------------------------------------------- */
+/* FUNCTION  estimatedArea :                                   */
+/*    To estimate the actual area.                             */
+/* PARAMETER USAGE :                                           */
+/*    int hitNum ->  The number of hitting in.                 */
+/*    int times  ->  Number of trying to hit.                  */
+/*    int a      ->  The length of semi-major axis.            */
+/*    int b      ->  The length of semi-minor axis.            */
+/* FUNCTION CALLED :                                           */
+/*    None.                                                    */
+/* ----------------------------------------------------------- */
 double estimatedArea(int hitNum, int times, int a, int b)
 {
     return (((double)hitNum / times) * a * b) * 4;
 }
 
+/* ----------------------------------------------------------- */
+/* FUNCTION  actualArea :                                      */
+/*    To get the actual area.                                  */
+/* PARAMETER USAGE :                                           */
+/*    int a      ->  The length of semi-major axis.            */
+/*    int b      ->  The length of semi-minor axis.            */
+/* FUNCTION CALLED :                                           */
+/*    acos(double __x)                                         */
+/* ----------------------------------------------------------- */
 double actualArea(int a, int b)
 {
     double pi = acos(-1.0);
     return pi * a * b;
 }
 
+/* ----------------------------------------------------------- */
+/* FUNCTION  getBallPos :                                      */
+/*    To get position of ball on the bin.                      */
+/* PARAMETER USAGE :                                           */
+/*    int bin      ->  The bin that we want to know.           */
+/* FUNCTION CALLED :                                           */
+/*    rand()                                                   */
+/*    getBallPos(int bin)                                      */
+/* ----------------------------------------------------------- */
+int getBallPos(int bin)
+{
+    double moveNum = (double)rand() / (RAND_MAX + 1.0);
+    if (bin == 2)
+    {
+        if (moveNum <= 0.5)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else
+    {
+        if (moveNum <= 0.5)
+        {
+            return getBallPos(bin - 1);
+        }
+        else
+        {
+            return getBallPos(bin - 1) + 1;
+        }
+    }
+}
+
+/* ----------------------------------------------------------- */
+/* FUNCTION  histogramMultiples :                              */
+/*    To get the multiple of histogram.                        */
+/* PARAMETER USAGE :                                           */
+/*    int ballNum     ->  All balls that we throw.             */
+/*    int bins        ->  All bins of pinball game.            */
+/*    int *arr        ->  Latest result of pinball game.       */
+/* FUNCTION CALLED :                                           */
+/*    None.                                                    */
+/* ----------------------------------------------------------- */
+double histogramMultiples(int ballNum, int bins, int *arr)
+{
+    int max = 0;
+    int i;
+    double ans;
+
+    for (i = 0; i < bins; i++)
+    {
+        if (max < arr[i])
+        {
+            max = arr[i];
+        }
+    }
+    ans = (double)max / ballNum * 100;
+    return 50 / ans;
+}
+
+/* ----------------------------------------------------------- */
+/* FUNCTION  pinBallAnswer :                                   */
+/*    To print the result of pinball game.                     */
+/* PARAMETER USAGE :                                           */
+/*    int bins        ->  All bins of pinball game.            */
+/*    int ballNum     ->  All balls that we throw.             */
+/* FUNCTION CALLED :                                           */
+/*    getBallPos()                                             */
+/*    histogramMultiples()                                     */
+/*    memcpy()                                                 */
+/*    sprintf()                                                */
+/*    printStr()                                               */
+/* ----------------------------------------------------------- */
 void pinBallAnswer(int bins, int ballNum)
 {
     int i;
@@ -214,50 +345,14 @@ void pinBallAnswer(int bins, int ballNum)
     }
 }
 
-int getBallPos(int bin)
-{
-    double moveNum = (double)rand() / (RAND_MAX + 1.0);
-    if (bin == 2)
-    {
-        if (moveNum <= 0.5)
-        {
-            return 0;
-        }
-        else
-        {
-            return 1;
-        }
-    }
-    else
-    {
-        if (moveNum <= 0.5)
-        {
-            return getBallPos(bin - 1);
-        }
-        else
-        {
-            return getBallPos(bin - 1) + 1;
-        }
-    }
-}
-
-double histogramMultiples(int ballNum, int bins, int *arr)
-{
-    int max = 0;
-    int i;
-    double ans;
-
-    for (i = 0; i < bins; i++)
-    {
-        if (max < arr[i])
-        {
-            max = arr[i];
-        }
-    }
-    ans = (double)max / ballNum * 100;
-    return 50 / ans;
-}
-
+/* ----------------------------------------------------------- */
+/* FUNCTION  pinBallAnswer :                                   */
+/*    To use write easy.                                       */
+/* PARAMETER USAGE :                                           */
+/*    char str[2000]  ->  The word that we want to write.      */
+/* FUNCTION CALLED :                                           */
+/*    write()                                                  */
+/* ----------------------------------------------------------- */
 void printStr(char str[2000])
 {
     write(1, str, strlen(str));
