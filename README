@@ -20,7 +20,7 @@ How many processes are created?
     Answer: Five processes will be created.
 How these processes are created, especially who is created by .
     Answer: If child process fork successfully or unsuccessfully, it will break.
-           The main process will contiune run for().
+            The main process will contiune run for().
 Diagram:
     ---> = Create
        * = Parent
@@ -54,4 +54,16 @@ Diagram:
 Question 4:
 
 What is this distribution called?
-    Answer: It was named `Normal distribution` and `Gaussian distribution`.
+    Answer: It was called `Binomial distribution`.
+What is the reason you believe the histogram is the named distribution by you?
+    Answer: I set a random number as 10, it means the final box.
+            The ball drop in number k box, and drop left (10-k) times, drop right k times.
+            To get Probability: P( X = k ) = C10 * (1/2)^k *(1/2)^(10-k) = C10 * (1/2)^10 , k=0,1,2,3,4,5,....10
+                                               k                             k
+            We can get following answer.
+            X |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10  |
+              |     |     |     |     |     |     |     |     |     |     |      |
+            P |0.001|0.009|0.043|0.117|0.205|0.246|0.205|0.117|0.043|0.009|0.0010|
+
+            Because the answer is similar to the histogram,
+             we can think that the pinball distribution is `Binomial distribution`.
