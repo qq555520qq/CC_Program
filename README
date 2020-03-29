@@ -1,0 +1,57 @@
+Question 1:
+
+How many processes are created?
+    Answer: Four processes will be created.
+How these processes are created, especially who is created by .
+    Answer: If main process fork successfully, it will break.
+            The child process will contiune run for().
+Diagram:
+    ---> = Create
+       * = Parent
+       + = Child
+    *Terminal ---> +Main process
+                   *Main process ---> +process1
+                                      *process1 ---> +process2
+                                                     *process2 ---> +process3
+              
+Question 2:
+
+How many processes are created?
+    Answer: Five processes will be created.
+How these processes are created, especially who is created by .
+    Answer: If child process fork successfully or unsuccessfully, it will break.
+           The main process will contiune run for().
+Diagram:
+    ---> = Create
+       * = Parent
+       + = Child
+    *Terminal ---> +Main process
+    *Main process ---> +process1 or *Main process ---> fail
+    *Main process ---> +process2 or *Main process ---> fail
+    *Main process ---> +process3 or *Main process ---> fail
+    *Main process ---> +process4 or *Main process ---> fail
+
+Question 3:
+
+How many processes are created?
+    Answer: Eight processes will be created.
+How these processes are created, especially who is created by.
+    Answer: If main process and child process fork unsuccessfully, it will break.
+            Or child process and main process will contiune run for().
+Diagram:
+    ---> = Create
+       * = Parent
+       + = Child
+    *Terminal ---> +Main process
+                   *Main process ---> +process1 or *Main process ---> fail
+                   *Main process ---> +process2 or *Main process ---> fail
+                   *Main process ---> +process3 or *Main process ---> fail
+                                      *process1 ---> +process4 or *process1 ---> fail
+                                      *process1 ---> +process5 or *process1 ---> fail
+                                      *process2 ---> +process6 or *process2 ---> fail
+                                                     *process4 ---> +process7 or *process4 ---> fail
+
+Question 4:
+
+What is this distribution called?
+    Answer: It was named `Normal distribution` and `Gaussian distribution`.
