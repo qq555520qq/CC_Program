@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
                     printStr("Simple Pinball Process Started\n");
                     sprintf(str, "Number of Bins %d\n", x);
                     printStr(str);
-                    sprintf(str, "Number of Ball Droppings %7d\n", y);
+                    sprintf(str, "Number of Ball Droppings %d\n", y);
                     printStr(str);
                     pinBallAnswer(x, y);
                     printStr("Simple Pinball Process Exits\n");
@@ -160,19 +160,19 @@ float buffonNeedle(int times)
     int i;
     int L = 1;
     int G = 1;
-    float answerTimes = 0L;
+    float answerTimes = 0.0f;
     float pi = acos(-1.0);
     float d;
     float a;
 
     for (i = 0; i < times; i++)
     {
-        d = (float)rand() / (RAND_MAX + 1L);
-        a = 2L * pi * (float)rand() / (RAND_MAX + 1L);
+        d = (float)rand() / (RAND_MAX + 1.0f);
+        a = 2.0f * pi * (float)rand() / (RAND_MAX + 1.0f);
         float crossAnswer = d + (L * sin(a));
         if (crossAnswer < 0 || crossAnswer > G)
         {
-            answerTimes += 1L;
+            answerTimes += 1.0f;
         }
     }
 
@@ -198,8 +198,8 @@ int inEllipseAreaNum(int times, int a, int b)
     float y;
     for (i = 0; i < times; i++)
     {
-        x = a * (float)rand() / (RAND_MAX + 1L);
-        y = b * (float)rand() / (RAND_MAX + 1L);
+        x = a * (float)rand() / (RAND_MAX + 1.0f);
+        y = b * (float)rand() / (RAND_MAX + 1.0f);
         float inAreaAnswer = (pow(x, 2) / pow(a, 2)) + (pow(y, 2) / pow(b, 2));
         if (inAreaAnswer <= 1)
         {
