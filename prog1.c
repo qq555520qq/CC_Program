@@ -42,11 +42,11 @@ int main(int argc, char *argv[])
     printStr(str);
     sprintf(str, "Buffon's Needle Iterations = %d\n", r);
     printStr(str);
-    sprintf(str, "Total random Number Pairs  = %d\n", a);
+    sprintf(str, "Total random Number Pairs  = %d\n", s);
     printStr(str);
-    sprintf(str, "Semi-Major Axis Length     = %d\n", b);
+    sprintf(str, "Semi-Major Axis Length     = %d\n", a);
     printStr(str);
-    sprintf(str, "Semi-Minor Axis Length     = %d\n", s);
+    sprintf(str, "Semi-Minor Axis Length     = %d\n", b);
     printStr(str);
     sprintf(str, "Number of Bins             = %d\n", x);
     printStr(str);
@@ -91,9 +91,9 @@ int main(int argc, char *argv[])
                 hitNum = inEllipseAreaNum(s, a, b);
                 sprintf(str, "         Total Hits %d\n", hitNum);
                 printStr(str);
-                sprintf(str, "         Estimated Area is %f\n", estimatedArea(hitNum, s, a, b));
+                sprintf(str, "         Estimated Area is %.5f\n", estimatedArea(hitNum, s, a, b));
                 printStr(str);
-                sprintf(str, "         Actual Area is %f\n", actualArea(a, b));
+                sprintf(str, "         Actual Area is %.5f\n", actualArea(a, b));
                 printStr(str);
                 printStr("         Ellipse Area Process Exits\n");
                 exit(0);
