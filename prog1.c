@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 long fibonacci(int n);
 float buffonNeedle(int times);
@@ -22,6 +23,36 @@ void pinBallAnswer(int bins, int ballNum);
 double histogramMultiples(int ballNum, int bins, int *arr);
 void printStr(char str[2000]);
 
+/* ----------------------------------------------------------- */
+/* FUNCTION main :                                             */
+/*    Fork four child processes to get the results of          */
+/*    Fibonacci Number problem                                 */
+/*    Buffon's Needle problem,                                 */ 
+/*    the ellipse area problem,                                */
+/*    the pinball problem.                                     */
+/*    After every childs exit, main will exit.                 */
+/* PARAMETER USAGE :                                           */
+/*   argv[1]-> int n ->  To want to get which Fn number.       */
+/*   argv[2]-> int r ->  Number of throwing needle.            */
+/*   argv[3]-> int a ->  The length of semi-major axis.        */
+/*   argv[4]-> int b ->  The length of semi-minor axis.        */
+/*   argv[5]-> int s ->  Number of trying to hit.              */
+/*   argv[6]-> int x ->  All bins of pinball game.             */
+/*   argv[7]-> int y ->  All balls that we throw.              */
+/* FUNCTION CALLED :                                           */
+/*    atoi(const char *str)                                    */
+/*    printStr(char str[2000])                                 */
+/*    sprintf(char *str, const char *format, ...)              */
+/*    fork()                                                   */
+/*    wait(int * status)                                       */
+/*    exit(int status)                                         */
+/*    fibonacci(int n)                                         */
+/*    buffonNeedle(int times)                                  */
+/*    inEllipseAreaNum(int times, int a, int b)                */
+/*    estimatedArea(int hitNum, int times, int a, int b)       */
+/*    actualArea(int a, int b)                                 */
+/*    pinBallAnswer(int bins, int ballNum)                     */
+/* ----------------------------------------------------------- */
 int main(int argc, char *argv[])
 {
     pid_t pid1, pid2, pid3, pid4;
@@ -36,6 +67,7 @@ int main(int argc, char *argv[])
     int hitNum;
     int binArr[x];
     char str[1000];
+    srand(time(NULL));
 
     printStr("Main Process Started\n");
     sprintf(str, "Fibonacci Input            = %d\n", n);
