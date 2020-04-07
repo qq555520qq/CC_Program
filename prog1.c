@@ -366,14 +366,18 @@ void pinBallAnswer(int bins, int ballNum)
     }
 
     multiples = histogramMultiples(ballNum, bins, binArr);
-
+    
     for (i = 0; i < bins; i++)
     {
         char star[50] = "";
         float s = multiples * binArr[i] / ballNum * 100;
-        memcpy(star, "**************************************************", (int)((multiples * binArr[i] / ballNum * 100) + 0.5));
-        sprintf(str, "%3d-(%7d)-( %5.2f%%)|%s\n", i + 1, binArr[i], (double)binArr[i] / ballNum * 100, star);
+        int j;
+        sprintf(str, "%3d-(%7d)-( %5.2f%%)|", i + 1, binArr[i], (double)binArr[i] / ballNum * 100);
         printStr(str);
+        for(j=0;j<(int)((multiples * binArr[i] / ballNum * 100) + 0.5);j++){
+            printStr("*");
+        }
+        printStr("\n");
     }
 }
 
